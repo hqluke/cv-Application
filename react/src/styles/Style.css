@@ -33,6 +33,15 @@ form{
   gap: 10px;
 }
 
+form button{
+  width: 100px;
+}
+
+.form-button{
+  display: flex;
+  justify-content:space-around;
+}
+
 
 .label{
   display: flex;

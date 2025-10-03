@@ -1,13 +1,19 @@
 import { useState } from 'react';
 
 
-function Form({onSubmit}){
+function PersonalInformation({onSubmit}){
 
     const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
   })
+
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleEdit = () => {
+    setIsEditing(false);  // Show Submit button
+  }
 
   const handleChange = (field) => (e) => {
     let value = e.target.value;
@@ -18,9 +24,10 @@ function Form({onSubmit}){
   };
 
 
-  const handleSubmit = (e) => {
+  const handleData = (e) => {
     e.preventDefault();
     onSubmit(formData);
+    setIsEditing(true);
   }
 
   const formatPhoneNumber = (value) => {
@@ -42,7 +49,10 @@ function Form({onSubmit}){
   
     return (
     <div className='form'>
-        <form onSubmit={handleSubmit}>
+      <div className='form-h1'>
+        <h1>Personal Information</h1>
+      </div>
+        <form onSubmit={handleData}>
             <div className='label'>
                 <div className='labelLeft'>
                     <label>Name:</label>
@@ -54,6 +64,7 @@ function Form({onSubmit}){
                     onChange={handleChange('name')}
                     placeholder='Enter your name'
                     pattern="[A-Za-z ]{1,32}"
+                    disabled={isEditing} 
                     />
                 </div>
             </div>
@@ -69,6 +80,7 @@ function Form({onSubmit}){
                         onChange={handleChange('email')}
                         placeholder='Enter your email'
                         value = {formData.email}
+                        disabled={isEditing} 
                     />
                 </div>
             </div>
@@ -83,14 +95,18 @@ function Form({onSubmit}){
                         onChange={handleChange('phone')}
                         placeholder="XXX-XXX-XXXX"
                         pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                        disabled={isEditing} 
                     />
                 </div>
             </div>
-        <button type='submit'>Submit</button>
-
+            <div className='form-button'>
+        {!isEditing && <button className='form-button-submit' type='submit'>Submit</button>}
+        {isEditing && <button className='form-button-edit' type='button' onClick={handleEdit}>Edit</button>}
+        </div>
         </form>
+        
     </div>
   )
 }
 
-export{Form}
+export{PersonalInformation}

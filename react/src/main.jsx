@@ -2,7 +2,7 @@ import { StrictMode, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import './styles/Style.css'
 import { Title } from './components/Title.jsx'
-import { Form } from './components/Form.jsx'
+import { PersonalInformation } from './components/PersonalInformation.jsx'
 import App from './App.jsx'
 
 
@@ -18,7 +18,7 @@ function Root(){
   return(
     <>
       <Title></Title>
-      <Form onSubmit={handleFormSubmit} />
+      <PersonalInformation onSubmit={handleFormSubmit} />
         {submittedData && <App {...submittedData}/> }
     </>
   )
