@@ -8,23 +8,26 @@ body {
 }
 
 #root{
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, 1frf);
+  grid-template-rows: auto auto auto;
+  min-width: 95vw;
   gap: 10px;
 }
 
 .title{
+  grid-column: 1/ 3;
 display: flex;
 margin: 0;
+justify-content: center;
 }
 
-.title h1{
-  margin: 0;
-}
+
+/* Personal Form */
 
 .form{
-  display: flex;
-  flex-direction: column;
+  grid-column: 1/2;
+  grid-row: 2/3;
 }
 
 form{
@@ -49,13 +52,50 @@ form button{
   justify-content: center;
 }
 
+/* Education Form */
+
+.form-e{
+  grid-column: 1/2;
+  grid-row: 3/4;
+
+}
+
+form.form-e{
+  grid-column: 1/2;
+  grid-row: 3/4;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  
+  
+}
+
+form.form-e button{
+  width: 100px;
+}
+
+.form-button-e{
+  display: flex;
+  justify-content:space-around;
+}
+
+
+.label-e{
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+
+/* Output */
 
 .output{
+  grid-column: 2/3;
+  grid-row: 2/4;
   display: flex;
   flex-direction: column;
   border: 1px solid black;
   align-items: center;
-  margin: 0;
   gap: 10px;
 }
 

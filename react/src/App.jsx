@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 
-function App({name, email, phone}) {
+function App({name, email, phone, school, major, startDate, endDate}) {
 
   return (
     <>
@@ -13,6 +13,10 @@ function App({name, email, phone}) {
       <p className='outputPara'>{name}</p>
       <p className='outputPara'>{email}</p>
       <p className='outputPara'>{phone}</p>
+      <p className='outputPara'>{school}</p>
+      <p className='outputPara'>{major}</p>
+      <p className='outputPara'>{startDate}</p>
+      <p className='outputPara'>{endDate}</p>
     </div>
 
     </>
