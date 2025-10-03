@@ -4,10 +4,18 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 
-function App() {
+function App({name, email, phone}) {
 
   return (
-    <h1>CV Application</h1>
+    <>
+    <div className='output'>
+      <h2>Output:</h2>
+      <p className='outputPara'>{name}</p>
+      <p className='outputPara'>{email}</p>
+      <p className='outputPara'>{phone}</p>
+    </div>
+
+    </>
   )
 }
 

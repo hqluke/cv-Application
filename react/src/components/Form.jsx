@@ -1,30 +1,33 @@
 import { useState } from 'react';
 
 
-function Form(){
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  
-  function changeName(e){
-    setName(e.target.value);
+function Form({onSubmit}){
+
+    const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  })
+
+  const handleChange = (field) => (e) => {
+    let value = e.target.value;
+    if (field === 'phone') {
+      value = formatPhoneNumber(value);
+    }
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(formData);
   }
 
-  function changeEmail(e){
-    setEmail(e.target.value);
-  }
-
-  function changePhone(e){
-    const inputValue = e.target.value;
-    setPhone(formatPhoneNumber(inputValue));
-  }
-
-    const formatPhoneNumber = (value) => {
-    // Remove non-digit characters
+  const formatPhoneNumber = (value) => {
     const digits = value.replace(/\D/g, '');
     let formattedNumber = '';
 
-    // Apply specific formatting logic (e.g., (XXX) XXX-XXXX)
+    
     if (digits.length > 6) {
       formattedNumber = `${digits.substring(0, 3)}-${digits.substring(3, 6)}-${digits.substring(6, 10)}`;
     } else if (digits.length > 3) {
@@ -34,11 +37,12 @@ function Form(){
     }
     return formattedNumber;
   };
+
   
   
     return (
     <div className='form'>
-        <form>
+        <form onSubmit={handleSubmit}>
             <div className='label'>
                 <div className='labelLeft'>
                     <label>Name:</label>
@@ -46,8 +50,8 @@ function Form(){
                 <div className='labelRight'>
                     <input
                     type="text" 
-                    value={name}
-                    onChange={changeName}
+                    value={formData.name}
+                    onChange={handleChange('name')}
                     placeholder='Enter your name'
                     pattern="[A-Za-z ]{1,32}"
                     />
@@ -62,8 +66,9 @@ function Form(){
                         type="email"
                         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                         title="Please enter a valid email address."
-                        onChange={changeEmail}
+                        onChange={handleChange('email')}
                         placeholder='Enter your email'
+                        value = {formData.email}
                     />
                 </div>
             </div>
@@ -74,17 +79,15 @@ function Form(){
                 <div className='labelRight'>
                     <input
                         type="tel" 
-                        value={phone}
-                        onChange={changePhone}
+                        value={formData.phone}
+                        onChange={handleChange('phone')}
                         placeholder="XXX-XXX-XXXX"
                         pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                     />
                 </div>
             </div>
-        <button>Test</button>
-        <p>Current value: {name}</p>
-        <p>Current value: {email}</p>
-        <p>Current value: {phone}</p>
+        <button type='submit'>Submit</button>
+
         </form>
     </div>
   )
