@@ -5,6 +5,7 @@ import { Title } from './components/Title.jsx'
 import { PersonalInformation } from './components/PersonalInformation.jsx'
 import App from './App.jsx'
 import { Education } from './components/Education.jsx'
+import { JobExperience } from './components/JobExperience.jsx'
 
 
 function Root(){
@@ -12,6 +13,7 @@ function Root(){
 
   const [personalData, setPersonalData] = useState(null);
   const [educationData, setEducationData] = useState(null);
+  const [jobData, setJobData] = useState(null);
 
   function handlePersonalForm(formData) {
     setPersonalData(formData);
@@ -21,12 +23,17 @@ function Root(){
     setEducationData(formData);
   }
 
+  function handleJobForm(formData) {
+    setJobData(formData);
+  }
+
   return(
     <>
       <Title></Title>
       <PersonalInformation onSubmit={handlePersonalForm} />
       <Education onSubmit={handleEducationForm}/>
-        {(personalData || educationData) && <App {...personalData} {...educationData}/> }
+      <JobExperience onSubmit={handleJobForm}/>
+        {(personalData || educationData || setJobData) && <App {...personalData} {...educationData} {...jobData} /> }
     </>
   )
 }
