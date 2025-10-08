@@ -34,6 +34,7 @@ function JobExperience({onSubmit}){
       <div className='form-j-h1'>
         <h1>Job Experience</h1>
       </div>
+      {!isEditing && 
         <form className='form-j' onSubmit={handleData}>
             <div className='label-j'>
                 <div className='labelLeft-j'>
@@ -95,7 +96,7 @@ function JobExperience({onSubmit}){
             </div>
             <div className='label-j'>
                 <div className='labelLeft-j'>
-                    <label>Graduation:</label>
+                    <label>Ended:</label>
                 </div>
                 <div className='labelRight-j'>
                     <input
@@ -105,13 +106,17 @@ function JobExperience({onSubmit}){
                         disabled={isEditing} 
                     />
                 </div>
-            </div>            
-            <div className='form-button-j'>
+            </div> 
+                       
+        <div className='form-button-j'>
         {!isEditing && <button className='form-button-submit-j' type='submit'>Submit</button>}
         {isEditing && <button className='form-button-jdit-j' type='button' onClick={handleEdit}>Edit</button>}
         </div>
         </form>
-        
+        }
+        <div className='form-button-j'>
+        {isEditing && <button className='form-button-jdit-j' type='button' onClick={handleEdit}>Edit</button>}
+        </div>
     </div>
     )
 }

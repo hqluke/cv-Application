@@ -5,8 +5,8 @@ function Education({onSubmit}){
     const [formData, setFormData] = useState({
         school: "",
         major: "",
-        startDate: "2025-10-03",
-        endDate: "2025-10-07"
+        startDate: "",
+        endDate: ""
     })
     
     const [isEditing, setIsEditing] = useState(false);
@@ -33,6 +33,7 @@ function Education({onSubmit}){
       <div className='form-e-h1'>
         <h1>Education</h1>
       </div>
+      {!isEditing && 
         <form className='form-e' onSubmit={handleData}>
             <div className='label-e'>
                 <div className='labelLeft-e'>
@@ -92,10 +93,13 @@ function Education({onSubmit}){
             </div>            
             <div className='form-button-e'>
         {!isEditing && <button className='form-button-submit-e' type='submit'>Submit</button>}
-        {isEditing && <button className='form-button-edit-e' type='button' onClick={handleEdit}>Edit</button>}
+        
         </div>
         </form>
-        
+        }
+        <div className='form-button-e'>
+            {isEditing && <button className='form-button-edit-e' type='button' onClick={handleEdit}>Edit</button>}
+        </div>
     </div>
     )
 }

@@ -52,6 +52,7 @@ function PersonalInformation({onSubmit}){
       <div className='form-h1'>
         <h1>Personal Information</h1>
       </div>
+      {!isEditing &&
         <form onSubmit={handleData}>
             <div className='label'>
                 <div className='labelLeft'>
@@ -101,10 +102,13 @@ function PersonalInformation({onSubmit}){
             </div>
             <div className='form-button'>
         {!isEditing && <button className='form-button-submit' type='submit'>Submit</button>}
-        {isEditing && <button className='form-button-edit' type='button' onClick={handleEdit}>Edit</button>}
+        
         </div>
         </form>
-        
+          }
+          <div className='form-button'>
+          {isEditing && <button className='form-button-edit' type='button' onClick={handleEdit}>Edit</button>}
+          </div>
     </div>
   )
 }

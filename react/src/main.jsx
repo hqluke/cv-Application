@@ -30,9 +30,11 @@ function Root(){
   return(
     <>
       <Title></Title>
-      <PersonalInformation onSubmit={handlePersonalForm} />
-      <Education onSubmit={handleEducationForm}/>
-      <JobExperience onSubmit={handleJobForm}/>
+      <div className="form-sections">
+        <PersonalInformation onSubmit={handlePersonalForm} />
+        <Education onSubmit={handleEducationForm} />
+        <JobExperience onSubmit={handleJobForm} />
+      </div>
         {(personalData || educationData || setJobData) && <App {...personalData} {...educationData} {...jobData} /> }
     </>
   )
